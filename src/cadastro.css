@@ -166,4 +166,34 @@
     .login-container {
       width: 580px;
     }
+    .cadastro-container {
+      background-color: red;
+      width: 900px;
+      height: 550px;
+      display: flex;
+      box-shadow: 0px 0px 0px ;
+      margin-top: -150px;
+    }
+  
   }
+
+
+  @media screen and (max-width: 580px) {
+
+    .cadastro-container {
+      background-color: red;
+      width: 900px;
+      height: 550px;
+      display: flex;
+      box-shadow: 0px 0px 0px ;
+      margin-top: -150px;
+    }
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100vh;
+    }
+  } 
