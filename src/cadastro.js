@@ -19,7 +19,7 @@ function App() {
   const [nome, setIsNome] = useState('');
   const [cookies, setCookie] = useCookies(['name']);
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+  const nameRegex = /^(?:[\p{Lu}&&[\p{IsLatin}]])(?:(?:')?(?:[\p{Ll}&&[\p{IsLatin}]]))+(?:\-(?:[\p{Lu}&&[\p{IsLatin}]])(?:(?:')?(?:[\p{Ll}&&[\p{IsLatin}]]))+)*(?: (?:(?:e|y|de(?:(?: la| las| lo| los))?|do|dos|da|das|del|van|von|bin|le) )?(?:(?:(?:d'|D'|O'|Mc|Mac|al\-))?(?:[\p{Lu}&&[\p{IsLatin}]])(?:(?:')?(?:[\p{Ll}&&[\p{IsLatin}]]))+|(?:[\p{Lu}&&[\p{IsLatin}]])(?:(?:')?(?:[\p{Ll}&&[\p{IsLatin}]]))+(?:\-(?:[\p{Lu}&&[\p{IsLatin}]])(?:(?:')?(?:[\p{Ll}&&[\p{IsLatin}]]))+)*))+(?: (?:Jr\.|II|III|IV))?$/
   /*valida email*/
 
   const [isValidPasswordConfirm, setIsValidPasswordConfirm] = useState(false);
@@ -67,14 +67,7 @@ function App() {
   }
   const validaNome = (event) => {
     setIsNome(event.target.value)
-    if( nome.length < 1) {
-      setIsValidName(false)
-      setMessageError('nome invalido')
-    } else {
-      setIsValidName(true)
-      setNameError('')
-
-    }
+   
   }
   
   async function onSubmitForm(event) {

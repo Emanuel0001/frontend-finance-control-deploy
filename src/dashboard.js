@@ -244,7 +244,7 @@ buscaSaidas();
         <div className='container-dashboard'>
             <div className='logo'><AiFillBank size={36} /></div>
             <div className='menu-container'>
-                Olá, <b>{Nome}</b>!
+                Olá, <b>{Nome || 'User'}</b>!
             </div>
             <div className='sair'>
                 <SlLogout size={25} onClick={deletarCookie} />
