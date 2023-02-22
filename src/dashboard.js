@@ -42,7 +42,7 @@ function Dashboard() {
         setNameUser(userName);
         const token = Cookies.get('x-access-token');
         async function validaToken() {
-            const resultadoCliente = await fetch('http://localhost:3001/client', {
+            const resultadoCliente = await fetch('https://api-service-finance-control-app.onrender.com/client', {
                 method: "GET",
                 headers: {
                     'x-access-token': token
@@ -76,7 +76,7 @@ buscaSaidas();
     async function buscaTodosRegistros() {
         var loader = document.getElementById('loader');
         loader.style.display = "flex"
-        let response = await fetch('http://localhost:3001/buscarRegistros', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/buscarRegistros', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ buscaSaidas();
     }
 
     async function buscaEntradas() {
-        let response = await fetch('http://localhost:3001/buscarEntradas', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/buscarEntradas', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -111,7 +111,7 @@ buscaSaidas();
     }
 
     async function buscaSaidas() {
-        let response = await fetch('http://localhost:3001/buscarSaidas', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/buscarSaidas', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -139,7 +139,7 @@ buscaSaidas();
 
     async function submitForm(event) {
         event.preventDefault();
-        let response = await fetch('http://localhost:3001/insertTable', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/insertTable', {
             method: 'POST',
             headers: {
                 'content-type': "application/json"
@@ -173,7 +173,7 @@ buscaSaidas();
     }
     async function deletaAll() {
         const click = 'clicou'
-        let response = await fetch('http://localhost:3001/deletAllTable', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/deletAllTable', {
             method: 'POST',
             headers: {
                 'content-type': "application/json"
@@ -214,7 +214,7 @@ buscaSaidas();
     
     async function handleDelete (key,e) {
         
-        let response = await fetch('http://localhost:3001/deletRowTable', {
+        let response = await fetch('https://api-service-finance-control-app.onrender.com/deletRowTable', {
             method: 'POST',
             headers: {
                 'content-type': "application/json"

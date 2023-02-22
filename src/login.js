@@ -51,7 +51,7 @@ function App() {
     var loader = document.getElementById('loader');
     loader.style.display = "flex"
 
-    let response = await fetch('http://localhost:3001/login', {
+    let response = await fetch('https://api-service-finance-control-app.onrender.com/login', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email: email, password: password })
@@ -68,7 +68,7 @@ function App() {
     loader.style.display = "none"
     }
     if (result.message) {
-      const resultadoCliente = await fetch('http://localhost:3001/client', {
+      const resultadoCliente = await fetch('https://api-service-finance-control-app.onrender.com/client', {
         method: 'GET',
         headers: {
           'x-access-token': token,

@@ -73,7 +73,7 @@ function App() {
   async function onSubmitForm(event) {
     event.preventDefault();
     console.log("clicou")
-    let response = await fetch('http://localhost:3001/cadastrarClient', {
+    let response = await fetch('https://api-service-finance-control-app.onrender.com/cadastrarClient', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ email: email, password: password, passwordConfirmacao: passwordConfirmacao, name: nome })
