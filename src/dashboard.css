@@ -426,6 +426,9 @@ button {
 
 
 @media screen and (max-width: 680px) {
+  .menu-container{
+    display: none;
+  }
     .montantes {
     font-size: 25px;
  }
@@ -519,7 +522,8 @@ g
     height: 10px;
   }
   .deletItemtable {
-    margin-left: -50px;
+    width: 30px;
+    margin-left: 5px;
   }
   .cadastro-container {
     width: 900px;
@@ -584,5 +588,8 @@ g
       .form-container {
         margin-top: 30px;
         margin-bottom: 65px;
+      }
+      .logo{
+        display: none;
       }
     }
