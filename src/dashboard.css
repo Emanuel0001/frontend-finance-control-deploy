@@ -539,14 +539,14 @@ g
   }
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 510px) {
     .bloco-title {
-        font-size: 12px;
-        margin-left: -20px;
+      font-size: 12px;
+      margin-left: -20px;
+      margin-right: -43px;
       }
       .icons {
         height: 20px;
-        margin-top: -40px;
       }
       .montantes {
         font-size: 18px;
