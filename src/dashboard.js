@@ -21,7 +21,7 @@ function Dashboard() {
     const [dados, setDados] = useState([]);
     const [totalEntradas, setTotalEntradas] = useState('');
     const [totalSaidas, setTotalSaidas] = useState('');
-   
+
     const [saidasTotal, setSaidasTotal] = useState('');
     const [entradasTotal, setEntradasTotal] = useState('');
     /*pega valor do input table*/
@@ -52,8 +52,8 @@ function Dashboard() {
                 history.push('./')
             }
         } validaToken()
-buscaEntradas();
-buscaSaidas();
+        buscaEntradas();
+        buscaSaidas();
     }, []);
 
     const validaDescricao = (event) => {
@@ -103,7 +103,7 @@ buscaSaidas();
             setTotalEntradas(valor);
 
         }
-        if(resultado.nenhuma){
+        if (resultado.nenhuma) {
             setTotalEntradas('');
 
         }
@@ -125,7 +125,7 @@ buscaSaidas();
 
             setTotalSaidas(valor);
         }
-        if(resultado.nenhuma){
+        if (resultado.nenhuma) {
             setTotalSaidas('');
 
         }
@@ -139,6 +139,7 @@ buscaSaidas();
 
     async function submitForm(event) {
         event.preventDefault();
+        document.getElementById("disabled").disabled = true;
         let response = await fetch('https://api-service-finance-control-app.onrender.com/insertTable', {
             method: 'POST',
             headers: {
@@ -148,6 +149,7 @@ buscaSaidas();
         })
         const result = await response.json()
         if (result.enviado) {
+        document.getElementById("disabled").disabled = false;
             setIsValidInsert(true)
             setMessage('ADCIONADO COM SUCESSO')
             setTimeout(function () {
@@ -159,6 +161,7 @@ buscaSaidas();
 
         }
         if (result.error) {
+            document.getElementById("disabled").disabled = false;
             setIsValidInsert(false)
             setMessage(result.error)
         }
@@ -173,6 +176,7 @@ buscaSaidas();
     }
     async function deletaAll() {
         const click = 'clicou'
+        document.getElementById("disabled").disabled = true;
         let response = await fetch('https://api-service-finance-control-app.onrender.com/deletAllTable', {
             method: 'POST',
             headers: {
@@ -187,8 +191,10 @@ buscaSaidas();
             setMessage(result.error)
             setTotalSaidas('')
             setTotalEntradas('')
+        document.getElementById("disabled").disabled = false;
         }
         if (result.clear) {
+        document.getElementById("disabled").disabled = false;
             setIsValidInsert(true)
             setMessage(result.clear)
             setTotalSaidas('')
@@ -203,17 +209,15 @@ buscaSaidas();
                 setDescricao('');
             }, 1000);
         }
-
-
     }
 
     const handleChange = (event) => {
         setTipo(event.target.value);
     }
 
-    
-    async function handleDelete (key,e) {
-        
+
+    async function handleDelete(key, e) {
+        document.getElementById("disabled").disabled = true;
         let response = await fetch('https://api-service-finance-control-app.onrender.com/deletRowTable', {
             method: 'POST',
             headers: {
@@ -223,20 +227,17 @@ buscaSaidas();
 
         })
         const result = await response.json()
-        if(result.clear){
-            
-            
-                buscaTodosRegistros()
-                buscaSaidas();
-                buscaEntradas();
-                resultadoTotalSoma()
-    setMessage('DELETADO COM SUCESSO');
+        if (result.clear) {
+            document.getElementById("disabled").disabled = false;
+            buscaTodosRegistros()
+            buscaSaidas();
+            buscaEntradas();
+            resultadoTotalSoma()
+            setMessage('DELETADO COM SUCESSO');
         }
     }
-  const resultadoTotalSoma = () => {
-          var valor = (entradasTotal - saidasTotal);
-        
-       
+    const resultadoTotalSoma = () => {
+        var valor = (entradasTotal - saidasTotal);
         return valor.toLocaleString()
     }
 
@@ -286,7 +287,7 @@ buscaSaidas();
                         <option value="entrada">Entrada</option>
                         <option value="saida">Saida</option>
                     </select>
-                    <button className='button-adcionar'>ADCIONAR</button>
+                    <button id="disabled" className='button-adcionar'>ADCIONAR</button>
                 </form>
             </div>
             <div className={`message ${isValidInsert ? 'sucess' : 'error'}`}>
@@ -313,9 +314,10 @@ buscaSaidas();
                                 <td>{val.valor}</td>
                                 <td>{val.tipo}</td>
                                 <td>
-                                    <button 
-                                    className='deletItemtable'
-                                    onClick={e => handleDelete(key,e)}
+                                    <button
+                                        id="disabled"
+                                        className='deletItemtable'
+                                        onClick={e => handleDelete(key, e)}
                                     >
                                         <FaTrashAlt size={23} /></button>
                                 </td>

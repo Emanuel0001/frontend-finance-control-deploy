@@ -48,9 +48,11 @@ function App() {
   
   async function onSubmitForm(event) {
     event.preventDefault();
+    document.getElementById("disabled").disabled = true;
     var loader = document.getElementById('loader');
     loader.style.display = "flex"
-
+    console.log('clicou')
+    
     let response = await fetch('https://api-service-finance-control-app.onrender.com/login', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -58,7 +60,6 @@ function App() {
     })
     const result = await response.json()
     setMessageError(result.error)
-   console.log(result.message)
     const token = result.token
     const NomeUser = result.nome
     setCookie("x-access-token", token, { path: "/", secure: "true" })
@@ -66,6 +67,7 @@ function App() {
     setCookie("email", email, { path: "/", secure: "true" })
     if(result.error){
     loader.style.display = "none"
+    document.getElementById("disabled").disabled = false;
     }
     if (result.message) {
       const resultadoCliente = await fetch('https://api-service-finance-control-app.onrender.com/client', {
@@ -79,6 +81,7 @@ function App() {
         history.push("/dashboard")
       } else {
     setMessageError('acesso invalido')
+    document.getElementById("disabled").disabled = false;
       
       }
     } else {
@@ -87,7 +90,7 @@ function App() {
       while (i <= 1) {
         i++;
         if (i == 1) {
-          document.getElementById('botao-entrar').disabled = false;
+          document.getElementById("disabled").disabled = false;
           continue;
         }
       }
@@ -132,7 +135,7 @@ const disabledButton = () => {
                     <span></span>
                 </div>
             </div>
-           <button class='button-entrar' disabled={disabledButton()}>ENTRAR</button>
+           <button id="disabled" class='button-entrar' disabled={disabledButton()}>ENTRAR</button>
             <p>Não tem uma conta? <Link to='/cadastro' className='link-login'>Create Account</Link></p>
           </form>
         </div>

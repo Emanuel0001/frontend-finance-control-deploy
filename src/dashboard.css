@@ -299,6 +299,9 @@ button {
 .loader {
     width: 100%;
     display: none;
+    margin-bottom: 10px;
+    margin-top: -5px;
+
     justify-content: center;
 }
 
